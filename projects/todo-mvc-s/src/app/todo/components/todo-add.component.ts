@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TodoItem } from '../../shared';
 
@@ -12,8 +13,19 @@ export class TodoAddComponent {
 
     @ViewChild('description', { static: true }) private descriptionInput: ElementRef;
 
-    constructor(public snackBar: MatSnackBar) {
+    toDo: { description: 'enter your description'};
 
+    toDoForm: FormGroup;
+
+    constructor(public snackBar: MatSnackBar) {
+      this.toDoForm = new FormGroup(
+        {description: new FormControl(
+          "", [
+            Validators.required,
+            Validators.minLength(3)
+          ]
+        )}
+      )
     }
 
     public onAdd(newItemDescription: string) {

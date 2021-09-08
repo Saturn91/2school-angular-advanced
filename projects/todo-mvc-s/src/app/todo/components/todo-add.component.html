@@ -1,4 +1,4 @@
-<form novalidate (submit)="onAdd(description.value)">
+<form novalidate [formGroup]="toDoForm" (submit)="onAdd(description.value)">
     <mat-card class="add-item">
         <mat-card-header>
             <mat-card-title>Add a new Item</mat-card-title>
